@@ -1,0 +1,308 @@
+/* ============================================================
+   The Topa Topa Times — broadsheet front page
+   Type:  Playfair Display (nameplate + heads) / Baskervville
+          (body) / Anton (section kickers)
+   Color: newsprint paper, ink black, one faded press-red
+   ============================================================ */
+
+:root {
+  --paper: #f4f1e8;
+  --ink: #1a1a1a;
+  --ink-soft: #4a4640;
+  --rule: #b8b2a3;
+  --rule-strong: #1a1a1a;
+  --press-red: #8b2418;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: #ded9cb;
+  color: var(--ink);
+  font-family: "Baskervville", Georgia, serif;
+  line-height: 1.5;
+  padding: 24px 12px;
+}
+
+/* ---- Grid: unchanged structure, just dressed ------------- */
+.newspaper-layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: auto auto 1fr;
+  grid-template-areas:
+    "title title title"
+    "feature-article feature-article cover-image"
+    "secondary-article secondary-article cover-image"
+    "small-article1 small-article2 small-article3";
+  gap: 0;
+  max-width: 1040px;
+  margin: 0 auto;
+  background: var(--paper);
+  padding: 32px 40px 40px;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.25);
+}
+
+/* ---- Masthead (the hero) --------------------------------- */
+.title {
+  grid-area: title;
+  text-align: center;
+  border-bottom: 3px double var(--rule-strong);
+  padding-bottom: 10px;
+  margin-bottom: 16px;
+}
+
+.masthead-top,
+.masthead-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: "Anton", sans-serif;
+  font-size: 0.72rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+}
+
+.masthead-top {
+  border-bottom: 1px solid var(--rule-strong);
+  padding-bottom: 6px;
+  margin-bottom: 6px;
+}
+
+.masthead-bottom {
+  border-top: 1px solid var(--rule-strong);
+  padding-top: 6px;
+  margin-top: 6px;
+  font-style: normal;
+}
+
+.masthead-bottom span:nth-child(2) {
+  font-family: "Baskervville", serif;
+  text-transform: none;
+  letter-spacing: 0;
+  font-style: italic;
+  font-size: 0.8rem;
+}
+
+.title h1 {
+  font-family: "Playfair Display", serif;
+  font-weight: 900;
+  font-size: clamp(2.6rem, 8vw, 5.2rem);
+  line-height: 1.1;
+  margin: 14px 0;
+  letter-spacing: 0.01em;
+}
+
+/* ---- Shared article styling ------------------------------ */
+article {
+  padding: 16px;
+  border-top: 1px solid var(--rule);
+}
+
+.kicker {
+  font-family: "Anton", sans-serif;
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--press-red);
+  margin: 0 0 4px;
+}
+
+h2, h3 {
+  font-family: "Playfair Display", serif;
+  font-weight: 700;
+  line-height: 1.08;
+  margin: 0 0 8px;
+}
+
+.byline {
+  font-family: "Anton", sans-serif;
+  font-size: 0.68rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+  margin: 0 0 10px;
+}
+
+article p {
+  margin: 0 0 10px;
+  text-align: justify;
+  hyphens: auto;
+}
+
+/* ---- Feature (lead story) -------------------------------- */
+.feature-article {
+  grid-area: feature-article;
+  border-top: 3px solid var(--rule-strong);
+  border-right: 1px solid var(--rule);
+  padding-right: 24px;
+}
+
+.feature-article h2 { font-size: 2rem; }
+
+.lead:first-letter {
+  font-family: "Playfair Display", serif;
+  font-weight: 900;
+  float: left;
+  font-size: 3.4rem;
+  line-height: 0.72;
+  padding: 6px 8px 0 0;
+  color: var(--press-red);
+}
+
+/* ---- Cover image ----------------------------------------- */
+.cover-image {
+  grid-area: cover-image;
+  margin: 0;
+  padding: 16px;
+  border-top: 3px solid var(--rule-strong);
+  border-left: 1px solid var(--rule);
+  display: flex;
+  flex-direction: column;
+}
+
+.cover-image img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  filter: contrast(1.05);
+}
+
+.cover-image figcaption {
+  font-size: 0.78rem;
+  font-style: italic;
+  color: var(--ink-soft);
+  padding-top: 6px;
+  border-bottom: 1px solid var(--rule);
+  padding-bottom: 10px;
+}
+
+/* ---- Secondary story ------------------------------------- */
+.secondary-article {
+  grid-area: secondary-article;
+  border-right: 1px solid var(--rule);
+  padding-right: 24px;
+}
+
+.secondary-article h2 { font-size: 1.5rem; }
+
+/* ---- Three briefs across the bottom ---------------------- */
+.small-article1 { grid-area: small-article1; }
+.small-article2 {
+  grid-area: small-article2;
+  border-left: 1px solid var(--rule);
+  border-right: 1px solid var(--rule);
+}
+.small-article3 { grid-area: small-article3; }
+
+.small-article1,
+.small-article2,
+.small-article3 {
+  border-top: 3px solid var(--rule-strong);
+}
+
+.small-article1 h3,
+.small-article2 h3,
+.small-article3 h3 { font-size: 1.15rem; }
+
+/* ---- Responsive: collapse to a single column ------------- */
+@media (max-width: 720px) {
+  .newspaper-layout {
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      "title"
+      "feature-article"
+      "cover-image"
+      "secondary-article"
+      "small-article1"
+      "small-article2"
+      "small-article3";
+    padding: 20px;
+  }
+
+  .feature-article,
+  .secondary-article {
+    border-right: none;
+    padding-right: 16px;
+  }
+
+  .cover-image { border-left: none; }
+
+  .small-article2 {
+    border-left: none;
+    border-right: none;
+  }
+}
+
+/* ---- Weather box (fills the cover column) ---------------- */
+.weather-box {
+  border: 2px solid var(--rule-strong);
+  padding: 12px 14px;
+  margin-top: 16px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.weather-box .weather-grid {
+  flex: 1;
+  align-content: space-evenly;
+}
+
+.weather-title {
+  font-family: "Anton", sans-serif;
+  font-size: 1rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  text-align: center;
+  margin: 0 0 8px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--rule);
+}
+
+.weather-today {
+  font-size: 0.82rem;
+  font-style: italic;
+  text-align: center;
+  margin: 0 0 12px;
+  color: var(--ink-soft);
+}
+
+.weather-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 6px;
+  margin: 0 0 10px;
+}
+
+.weather-grid div {
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px dotted var(--rule);
+  padding-bottom: 3px;
+}
+
+.weather-grid dt {
+  font-family: "Anton", sans-serif;
+  font-size: 0.68rem;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+}
+
+.weather-grid dd {
+  margin: 0;
+  font-size: 0.82rem;
+  font-weight: 600;
+}
+
+.weather-note {
+  font-size: 0.74rem;
+  font-style: italic;
+  text-align: center;
+  color: var(--press-red);
+  margin: 0;
+  padding-top: 8px;
+  border-top: 1px solid var(--rule);
+}
